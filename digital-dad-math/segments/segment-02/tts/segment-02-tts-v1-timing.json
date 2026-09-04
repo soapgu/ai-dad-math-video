@@ -1,0 +1,60 @@
+{
+  "output": "segment-02-tts-v1.mp3",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "leading_silence_seconds": 1.2,
+  "lines": [
+    {
+      "label": "回顾问题",
+      "role": "数字爸爸",
+      "voice": "zh-CN-YunjianNeural",
+      "text": "原来有几个呢？",
+      "rate": "-15%",
+      "pause_after_seconds": 0.55,
+      "start_seconds": 1.2,
+      "end_seconds": 2.418
+    },
+    {
+      "label": "放回苹果",
+      "role": "数字爸爸",
+      "voice": "zh-CN-YunjianNeural",
+      "text": "把拿走的三个放回来，",
+      "rate": "-15%",
+      "pause_after_seconds": 0.35,
+      "start_seconds": 2.968,
+      "end_seconds": 4.663
+    },
+    {
+      "label": "合并苹果",
+      "role": "数字爸爸",
+      "voice": "zh-CN-YunjianNeural",
+      "text": "再和剩下的五个合起来。",
+      "rate": "-15%",
+      "pause_after_seconds": 0.8,
+      "start_seconds": 5.013,
+      "end_seconds": 7.11
+    },
+    {
+      "label": "儿子回答",
+      "role": "儿子",
+      "voice": "zh-CN-YunxiaNeural",
+      "text": "一共是八个！",
+      "rate": "-5%",
+      "pause_after_seconds": 0.55,
+      "start_seconds": 7.91,
+      "end_seconds": 8.773
+    },
+    {
+      "label": "确认规律",
+      "role": "数字爸爸",
+      "voice": "zh-CN-YunjianNeural",
+      "text": "对，所以被减数等于差加减数。",
+      "rate": "-15%",
+      "pause_after_seconds": 0.8,
+      "start_seconds": 9.323,
+      "end_seconds": 12.475
+    }
+  ],
+  "timeline_total_seconds": 13.275,
+  "encoded_total_seconds": 13.344
+}
