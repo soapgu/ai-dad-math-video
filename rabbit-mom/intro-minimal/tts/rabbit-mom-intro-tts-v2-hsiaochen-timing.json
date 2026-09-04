@@ -1,0 +1,34 @@
+{
+  "variant": "晓臻台湾普通话版",
+  "voice": "zh-TW-HsiaoChenNeural",
+  "pitch_shift_semitones": 0.0,
+  "leading_silence_seconds": 0.2,
+  "first_pause_seconds": 0.35,
+  "contrast_pause_seconds": 0.85,
+  "trailing_silence_seconds": 0.9,
+  "segments": [
+    {
+      "label": "自我介绍",
+      "text": "嗨，我是兔子妈妈。",
+      "rate": "-5%",
+      "start_seconds": 0.2,
+      "end_seconds": 1.821
+    },
+    {
+      "label": "询问作业",
+      "text": "今天的作业做完了没有？",
+      "rate": "-10%",
+      "start_seconds": 2.171,
+      "end_seconds": 4.099
+    },
+    {
+      "label": "最后提醒",
+      "text": "你最好做完了。",
+      "rate": "-20%",
+      "start_seconds": 4.949,
+      "end_seconds": 6.294
+    }
+  ],
+  "total_seconds": 7.194,
+  "encoded_total_seconds": 7.248
+}

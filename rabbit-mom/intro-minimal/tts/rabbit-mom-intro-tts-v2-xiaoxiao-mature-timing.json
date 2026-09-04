@@ -1,0 +1,34 @@
+{
+  "variant": "晓晓标准普通话成熟版",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "pitch_shift_semitones": -2.0,
+  "leading_silence_seconds": 0.2,
+  "first_pause_seconds": 0.35,
+  "contrast_pause_seconds": 0.85,
+  "trailing_silence_seconds": 0.9,
+  "segments": [
+    {
+      "label": "自我介绍",
+      "text": "嗨，我是兔子妈妈。",
+      "rate": "-10%",
+      "start_seconds": 0.2,
+      "end_seconds": 1.852
+    },
+    {
+      "label": "询问作业",
+      "text": "今天的作业做完了没有？",
+      "rate": "-15%",
+      "start_seconds": 2.202,
+      "end_seconds": 4.084
+    },
+    {
+      "label": "最后提醒",
+      "text": "你最好做完了。",
+      "rate": "-25%",
+      "start_seconds": 4.934,
+      "end_seconds": 6.164
+    }
+  ],
+  "total_seconds": 7.064,
+  "encoded_total_seconds": 7.104
+}
