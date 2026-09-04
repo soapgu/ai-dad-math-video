@@ -1,0 +1,56 @@
+{
+  "output": "segment-01-tts-v1.mp3",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "leading_silence_seconds": 0.8,
+  "pause_policy": "开场 0.80 秒；自我介绍后 0.35 秒；苹果出现后 0.55 秒；爸爸提问后 0.80 秒；儿子回答后 0.55 秒；结尾 0.80 秒",
+  "lines": [
+    {
+      "label": "自我介绍",
+      "role": "数字爸爸",
+      "voice": "zh-CN-YunjianNeural",
+      "text": "嗨，我是数字爸爸！",
+      "rate": "-15%",
+      "start_seconds": 0.8,
+      "end_seconds": 2.73
+    },
+    {
+      "label": "呈现苹果",
+      "role": "数字爸爸",
+      "voice": "zh-CN-YunjianNeural",
+      "text": "桌上有八个苹果，",
+      "rate": "-15%",
+      "start_seconds": 3.08,
+      "end_seconds": 4.693
+    },
+    {
+      "label": "提出问题",
+      "role": "数字爸爸",
+      "voice": "zh-CN-YunjianNeural",
+      "text": "拿走三个，还剩几个？",
+      "rate": "-15%",
+      "start_seconds": 5.243,
+      "end_seconds": 7.695
+    },
+    {
+      "label": "回答",
+      "role": "儿子",
+      "voice": "zh-CN-YunxiaNeural",
+      "text": "还剩五个！",
+      "rate": "-5%",
+      "start_seconds": 8.495,
+      "end_seconds": 9.279
+    },
+    {
+      "label": "确认算式",
+      "role": "数字爸爸",
+      "voice": "zh-CN-YunjianNeural",
+      "text": "对，八减三等于五。",
+      "rate": "-15%",
+      "start_seconds": 9.829,
+      "end_seconds": 11.697
+    }
+  ],
+  "timeline_total_seconds": 12.497,
+  "encoded_total_seconds": 12.552
+}
