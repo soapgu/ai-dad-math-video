@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""生成《父子讲题》第一段的唯一混合 TTS 与实测时间轴。"""
+"""生成《父子讲题》各片段的混合 TTS 与实测时间轴。"""
 
 from __future__ import annotations
 
@@ -155,6 +155,31 @@ SEGMENT_02_EVENTS = (
     ),
 )
 
+SEGMENT_03_EVENTS = (
+    Event(
+        "儿子追问算法",
+        (
+            Track(
+                "儿子",
+                "zh-CN-YunxiaNeural",
+                "所以到底怎么算？",
+                "+5%",
+            ),
+        ),
+    ),
+    Event(
+        "爸爸开始崩溃",
+        (
+            Track(
+                "数字爸爸",
+                "zh-CN-YunjianNeural",
+                "我刚才不是讲了吗？",
+                "+0%",
+            ),
+        ),
+    ),
+)
+
 SEGMENTS = {
     "01": SegmentConfig(
         key="01",
@@ -177,6 +202,17 @@ SEGMENTS = {
         target_max_seconds=10.5,
         events=SEGMENT_02_EVENTS,
         fallback_rates=((1, "+0%"),),
+    ),
+    "03": SegmentConfig(
+        key="03",
+        output_stem="segment-03-dialogue-v1",
+        timing_filename="segment-03-timing-v1.json",
+        leading_silence=1.00,
+        pauses_after=(0.75, 3.00),
+        target_min_seconds=8.5,
+        target_max_seconds=9.5,
+        events=SEGMENT_03_EVENTS,
+        fallback_rates=((1, "+5%"),),
     ),
 }
 

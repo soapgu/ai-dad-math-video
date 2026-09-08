@@ -1,0 +1,59 @@
+{
+  "segment": "03",
+  "output": "segment-03-dialogue-v1.mp3",
+  "codec": "mp3",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "bit_rate": "48k",
+  "leading_silence_seconds": 1.0,
+  "trailing_silence_seconds": 4.416,
+  "requested_trailing_silence_seconds": 4.348,
+  "mp3_container_padding_seconds": 0.068,
+  "target_duration_seconds": [
+    8.5,
+    9.5
+  ],
+  "duration_fallback_applied": false,
+  "events": [
+    {
+      "label": "儿子追问算法",
+      "start_seconds": 1.0,
+      "end_seconds": 2.24,
+      "pause_after_seconds": 0.75,
+      "tracks": [
+        {
+          "role": "儿子",
+          "voice": "zh-CN-YunxiaNeural",
+          "text": "所以到底怎么算？",
+          "rate": "+5%",
+          "pitch_shift_semitones": 0.0,
+          "gain_db": 0.0,
+          "start_seconds": 1.0,
+          "end_seconds": 2.24
+        }
+      ]
+    },
+    {
+      "label": "爸爸开始崩溃",
+      "start_seconds": 2.99,
+      "end_seconds": 4.152,
+      "pause_after_seconds": 4.416,
+      "tracks": [
+        {
+          "role": "数字爸爸",
+          "voice": "zh-CN-YunjianNeural",
+          "text": "我刚才不是讲了吗？",
+          "rate": "+0%",
+          "pitch_shift_semitones": 0.0,
+          "gain_db": 0.0,
+          "start_seconds": 2.99,
+          "end_seconds": 4.152
+        }
+      ]
+    }
+  ],
+  "timeline_total_seconds": 8.568,
+  "encoded_total_seconds": 8.568,
+  "max_volume_db": -6.5,
+  "mixing_note": "全部事件均为单一说话人，无并行或重叠音轨。"
+}
