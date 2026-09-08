@@ -1,0 +1,116 @@
+{
+  "output": "segment-01-dialogue-v1.mp3",
+  "codec": "mp3",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "bit_rate": "48k",
+  "leading_silence_seconds": 0.25,
+  "trailing_silence_seconds": 0.566,
+  "requested_trailing_silence_seconds": 0.5,
+  "mp3_container_padding_seconds": 0.066,
+  "target_duration_seconds": [
+    9.0,
+    11.0
+  ],
+  "duration_fallback_applied": false,
+  "events": [
+    {
+      "label": "妈妈讲题三遍",
+      "start_seconds": 0.25,
+      "end_seconds": 2.452,
+      "pause_after_seconds": 0.3,
+      "tracks": [
+        {
+          "role": "兔子妈妈",
+          "voice": "zh-CN-XiaoxiaoNeural",
+          "text": "这道题我已经讲三遍了！",
+          "rate": "-15%",
+          "pitch_shift_semitones": -2.0,
+          "start_seconds": 0.25,
+          "end_seconds": 2.452
+        }
+      ]
+    },
+    {
+      "label": "儿子仍未听懂",
+      "start_seconds": 2.752,
+      "end_seconds": 4.158,
+      "pause_after_seconds": 0.45,
+      "tracks": [
+        {
+          "role": "儿子",
+          "voice": "zh-CN-YunxiaNeural",
+          "text": "可我还是听不懂嘛！",
+          "rate": "-5%",
+          "pitch_shift_semitones": 0.0,
+          "start_seconds": 2.752,
+          "end_seconds": 4.158
+        }
+      ]
+    },
+    {
+      "label": "爸爸主动接棒",
+      "start_seconds": 4.608,
+      "end_seconds": 7.435,
+      "pause_after_seconds": 0.25,
+      "tracks": [
+        {
+          "role": "数字爸爸",
+          "voice": "zh-CN-YunjianNeural",
+          "text": "别急，讲题这事，还得看我。",
+          "rate": "-15%",
+          "pitch_shift_semitones": 0.0,
+          "start_seconds": 4.608,
+          "end_seconds": 7.435
+        }
+      ]
+    },
+    {
+      "label": "母子齐声",
+      "start_seconds": 7.685,
+      "end_seconds": 8.537,
+      "pause_after_seconds": 0.25,
+      "tracks": [
+        {
+          "role": "兔子妈妈",
+          "voice": "zh-CN-XiaoxiaoNeural",
+          "text": "你行你上啊！",
+          "rate": "-15%",
+          "pitch_shift_semitones": -2.0,
+          "start_seconds": 7.685,
+          "end_seconds": 8.537
+        },
+        {
+          "role": "儿子",
+          "voice": "zh-CN-YunxiaNeural",
+          "text": "你行你上啊！",
+          "rate": "-5%",
+          "pitch_shift_semitones": 0.0,
+          "start_seconds": 7.685,
+          "end_seconds": 8.484
+        }
+      ]
+    },
+    {
+      "label": "爸爸应战",
+      "start_seconds": 8.787,
+      "end_seconds": 9.634,
+      "pause_after_seconds": 0.566,
+      "tracks": [
+        {
+          "role": "数字爸爸",
+          "voice": "zh-CN-YunjianNeural",
+          "text": "我上就我上。",
+          "rate": "-10%",
+          "pitch_shift_semitones": 0.0,
+          "start_seconds": 8.787,
+          "end_seconds": 9.634
+        }
+      ]
+    }
+  ],
+  "timeline_total_seconds": 10.2,
+  "encoded_total_seconds": 10.2,
+  "max_volume_db": -4.6,
+  "mixing_note": "仅母子齐声事件包含两条并行音轨；其余事件为单一说话人。"
+}
