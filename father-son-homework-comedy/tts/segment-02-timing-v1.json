@@ -1,0 +1,77 @@
+{
+  "segment": "02",
+  "output": "segment-02-dialogue-v1.mp3",
+  "codec": "mp3",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "bit_rate": "48k",
+  "leading_silence_seconds": 0.8,
+  "trailing_silence_seconds": 1.546,
+  "requested_trailing_silence_seconds": 1.494,
+  "mp3_container_padding_seconds": 0.052,
+  "target_duration_seconds": [
+    9.5,
+    10.5
+  ],
+  "duration_fallback_applied": false,
+  "events": [
+    {
+      "label": "儿子理想中听懂",
+      "start_seconds": 0.8,
+      "end_seconds": 1.913,
+      "pause_after_seconds": 0.5,
+      "tracks": [
+        {
+          "role": "儿子",
+          "voice": "zh-CN-YunxiaNeural",
+          "text": "爸爸，我懂了！",
+          "rate": "+5%",
+          "pitch_shift_semitones": 0.0,
+          "gain_db": 0.0,
+          "start_seconds": 0.8,
+          "end_seconds": 1.913
+        }
+      ]
+    },
+    {
+      "label": "爸爸总结方法",
+      "start_seconds": 2.413,
+      "end_seconds": 4.428,
+      "pause_after_seconds": 2.6,
+      "tracks": [
+        {
+          "role": "数字爸爸",
+          "voice": "zh-CN-YunjianNeural",
+          "text": "看吧，讲题要讲方法。",
+          "rate": "-5%",
+          "pitch_shift_semitones": 0.0,
+          "gain_db": 0.0,
+          "start_seconds": 2.413,
+          "end_seconds": 4.428
+        }
+      ]
+    },
+    {
+      "label": "爸爸现实中自语",
+      "start_seconds": 7.028,
+      "end_seconds": 8.006,
+      "pause_after_seconds": 1.546,
+      "tracks": [
+        {
+          "role": "数字爸爸",
+          "voice": "zh-CN-YunjianNeural",
+          "text": "这不就拿下了。",
+          "rate": "+0%",
+          "pitch_shift_semitones": 0.0,
+          "gain_db": -2.0,
+          "start_seconds": 7.028,
+          "end_seconds": 8.006
+        }
+      ]
+    }
+  ],
+  "timeline_total_seconds": 9.552,
+  "encoded_total_seconds": 9.552,
+  "max_volume_db": -5.9,
+  "mixing_note": "全部事件均为单一说话人，无并行或重叠音轨。"
+}
