@@ -1,0 +1,20 @@
+[Script Info]
+Title: 父子讲题 第一段
+ScriptType: v4.00+
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+YCbCr Matrix: TV.709
+PlayResX: 1920
+PlayResY: 1080
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Dialogue,Heiti SC,60,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,4,1,2,80,80,90,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.60,0:00:02.56,Dialogue,,0,0,0,,这道题我已经讲三遍了！
+Dialogue: 0,0:00:03.01,0:00:04.27,Dialogue,,0,0,0,,可我还是听不懂嘛！
+Dialogue: 0,0:00:04.92,0:00:07.44,Dialogue,,0,0,0,,别急，讲题这事，还得看我。
+Dialogue: 0,0:00:07.84,0:00:08.59,Dialogue,,0,0,0,,你行你上啊！
+Dialogue: 0,0:00:08.99,0:00:09.74,Dialogue,,0,0,0,,我上就我上。

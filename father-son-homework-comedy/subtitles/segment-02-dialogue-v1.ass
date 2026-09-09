@@ -1,0 +1,18 @@
+[Script Info]
+Title: 父子讲题 第二段
+ScriptType: v4.00+
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+YCbCr Matrix: TV.709
+PlayResX: 1920
+PlayResY: 1080
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Dialogue,Heiti SC,60,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,4,1,2,80,80,90,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.80,0:00:01.91,Dialogue,,0,0,0,,爸爸，我懂了！
+Dialogue: 0,0:00:02.41,0:00:04.43,Dialogue,,0,0,0,,看吧，讲题要讲方法。
+Dialogue: 0,0:00:07.03,0:00:08.01,Dialogue,,0,0,0,,这不就拿下了。
