@@ -1,0 +1,39 @@
+.canvas {
+  position: absolute;
+  width: 1280px;
+  height: 720px;
+  transform: scale(1.5);
+  transform-origin: top left;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #243a39;
+  overflow: hidden;
+}
+
+.eyebrow { position: absolute; top: 43px; left: 70px; font-size: 24px; font-weight: 600; color: #526765; }
+.title { position: absolute; top: 78px; left: 70px; font-size: 49px; font-weight: 750; }
+.question-stage { position: absolute; inset: 0; display: grid; grid-template-columns: 760px 520px; }
+.study-scene { display: block; width: 760px; height: 720px; }
+.study-preload { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.question-panel { display: flex; flex-direction: column; align-items: center; padding: 111px 30px 0; }
+.question-kicker { font-size: 23px; font-weight: 600; color: #526765; }
+.question-title { margin-top: 12px; font-size: 39px; font-weight: 750; }
+.legend { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+.legend > div { display: flex; align-items: center; justify-content: center; gap: 5px; border-radius: 16px; height: 56px; padding: 0 12px; font-size: 22px; font-weight: 700; white-space: nowrap; }
+.truth { background: #fff1bc; }
+.false { background: #fadddc; }
+.choices { display: flex; justify-content: center; gap: 31px; margin-top: 45px; }
+.choice { width: 113px; display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 29px; }
+.choice-portrait, .assignment-portrait { position: relative; display: flex; }
+.empty-badge { position: absolute; top: -4px; right: -5px; width: 30px; height: 30px; border: 2px dashed #927d58; border-radius: 50%; background: #fff7e5; }
+.question { margin-top: 49px; text-align: center; font-size: 43px; font-weight: 750; }
+.closing { position: absolute; left: 70px; right: 70px; text-align: center; font-weight: 700; top: 625px; font-size: 39px; color: #405956; }
+.assumptions { position: absolute; top: 170px; left: 70px; right: 70px; display: grid; gap: 16px; }
+.assumption { display: grid; grid-template-columns: 265px repeat(3, 1fr); align-items: center; height: 132px; padding: 0 27px; border-radius: 24px; background: #fffdf8; }
+.assumption-label { display: grid; gap: 2px; }
+.assumption-label span { font-size: 23px; color: #526765; }
+.assumption-label strong { font-size: 31px; }
+.assignment { display: flex; align-items: center; gap: 17px; }
+.assignment strong { display: block; font-size: 29px; }
+.assignment span { display: block; font-size: 23px; font-weight: 600; }
+.true-label { color: #215747; }
+.false-label { color: #883d33; }
