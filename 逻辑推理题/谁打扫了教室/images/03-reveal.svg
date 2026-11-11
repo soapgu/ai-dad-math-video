@@ -27,7 +27,7 @@
       <circle cy="1" r="11" fill="#D66A61"/>
       <path d="M-5-1h1m8 0h1m-8 6q3 3 6 0" fill="none" stroke="#662B32" stroke-width="1.6" stroke-linecap="round"/>
     </g>
-  </defs>
+  <g id="broom"><path d="M16 -30 L-4 9" stroke="#916039" stroke-width="6" stroke-linecap="round"/><path d="M-10 5 L2 11 L-2 34 Q-15 35 -26 22 Z" fill="#E8B95F" stroke="#916039" stroke-width="2"/><path d="M-8 13 L-19 25 M-3 16 L-11 30" stroke="#AE8436" stroke-width="2"/></g></defs>
   <rect width="1280" height="720" fill="#FCF4E7"/>
   <g font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#243A39">
     <text x="80" y="85" font-size="24" font-weight="600" fill="#526765">02 / 推出答案</text>
@@ -68,7 +68,7 @@
       <rect x="868" y="213" width="332" height="352" rx="28" fill="#DDE9F8"/>
       <circle cx="920" cy="282" r="25" fill="#345F92"/>
       <text x="920" y="291" text-anchor="middle" font-size="26" font-weight="700" fill="#FFFFFF">3</text>
-      <g id="answer-portrait">
+      <g id="answer-portrait"><use xlink:href="#broom" transform="translate(1105 364) scale(1.15)"/>
         <use xlink:href="#xiaohua" transform="translate(1034 355) scale(1.05)"/>
       </g>
       <text x="1034" y="458" text-anchor="middle" font-size="48" font-weight="700" fill="#244C7C">小华</text>

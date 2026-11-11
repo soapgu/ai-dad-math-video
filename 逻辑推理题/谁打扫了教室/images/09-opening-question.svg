@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+<title id="title">兔子妈妈出题：谁打扫了教室？</title>
+<desc id="desc">左侧是小华、欢欢和乐乐所在的教室，右上角是微笑的兔子妈妈头像。她说今天出一道推理题。只有一人打扫、只有一句真话，三名孩子的原话依次列出。</desc>
+<defs>
+  <clipPath id="mom-avatar"><circle cx="1190" cy="90" r="60"/></clipPath>
+</defs>
+<rect width="1280" height="720" fill="#FCF4E7"/>
+<image xlink:href="01-classroom.png" x="0" y="98" width="700" height="515" preserveAspectRatio="xMidYMid meet"/>
+<g font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#243A39">
+  <text x="32" y="63" font-size="24" fill="#526765">逻辑推理题 · 放学后的教室</text>
+  <text x="350" y="657" text-anchor="middle" font-size="24" fill="#526765">从左到右：小华、欢欢、乐乐</text>
+  <rect x="710" width="570" height="720" fill="#FCF4E7"/>
+  <text x="740" y="76" font-size="34" font-weight="700">谁打扫了教室？</text>
+  <g clip-path="url(#mom-avatar)">
+    <circle cx="1190" cy="90" r="60" fill="#F7E7CA"/>
+    <svg x="1130" y="30" width="120" height="120" viewBox="65 -70 550 690" preserveAspectRatio="xMidYMid meet">
+      <image xlink:href="../../../rabbit-mom/intro-minimal/references/rabbit-mom-design-v2.png" width="1728" height="912"/>
+    </svg>
+  </g>
+  <circle cx="1190" cy="90" r="60" fill="none" stroke="#C49A63" stroke-width="2"/>
+  <text x="1190" y="180" text-anchor="middle" font-size="23">兔子妈妈</text>
+  <path d="M758 111 H1080 Q1094 111 1094 125 V145 L1110 140 L1094 160 V163 Q1094 177 1080 177 H758 Q742 177 742 161 V127 Q742 111 758 111Z" fill="#F8E7C4"/>
+  <text x="918" y="153" text-anchor="middle" font-size="28" font-weight="700">今天出一道推理题</text>
+  <text x="740" y="235" font-size="27" font-weight="700">只有一人打扫，只有一句真话</text>
+  <g>
+    <rect x="740" y="278" width="510" height="78" rx="16" fill="#FFFDF8"/>
+    <text x="761" y="326" font-size="29"><tspan font-weight="700">小华</tspan><tspan dx="14">「不是我做的。」</tspan></text>
+  </g>
+  <g>
+    <rect x="740" y="372" width="510" height="78" rx="16" fill="#FFFDF8"/>
+    <text x="761" y="420" font-size="29"><tspan font-weight="700">欢欢</tspan><tspan dx="14">「也不是我做的。」</tspan></text>
+  </g>
+  <g>
+    <rect x="740" y="466" width="510" height="78" rx="16" fill="#FFFDF8"/>
+    <text x="761" y="514" font-size="29"><tspan font-weight="700">乐乐</tspan><tspan dx="14">「是欢欢做的。」</tspan></text>
+  </g>
+  <text x="995" y="626" text-anchor="middle" font-size="30" font-weight="700">你能找到打扫的人吗？</text>
+</g>
+</svg>

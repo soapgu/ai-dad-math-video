@@ -37,3 +37,21 @@
 .assignment span { display: block; font-size: 23px; font-weight: 600; }
 .true-label { color: #215747; }
 .false-label { color: #883d33; }
+
+.inferences { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.inference { padding: 24px 28px; background: #fffdf8; border-radius: 24px; font-size: 29px; }
+.inference span { display: block; margin: 11px 0 3px; font-size: 22px; color: #883d33; }
+.inference > div + div strong { display: block; font-size: 42px; }
+.verdict { text-align: center; font-size: 38px; font-weight: 750; color: #883d33; }
+.voice-caption { position: absolute; z-index: 2; bottom: 24px; left: 50%; transform: translateX(-50%); width: max-content; max-width: 1100px; padding: 7px 18px; border-radius: 9px; color: white; background: #213433; font-size: 31px; font-weight: 650; text-align: center; }
+
+.lesson-split { position: absolute; inset: 0; display: grid; grid-template-columns: 760px 520px; overflow: hidden; }
+.classroom-art { width: 760px; height: 720px; object-fit: cover; object-position: center; }
+.lesson-panel { z-index: 1; padding: 52px 24px 0; background: #fcf4e7; }
+.lesson-panel h1 { font-size: 43px; margin: 0 0 14px; }
+.lesson-panel p { font-size: 27px; font-weight: 700; }
+.statement { display: flex; align-items: center; gap: 10px; padding: 6px 14px; margin-bottom: 8px; background: #fffdf8; border-radius: 14px; font-size: 26px; }
+.statement strong, .statement .true-label, .statement .false-label { flex-shrink: 0; }
+.answer-statements { width: 780px; justify-self: center; }
+.fast-truth { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 12px 0; font-size: 32px; font-weight: 750; }
+.answer-note { color: #215747; }

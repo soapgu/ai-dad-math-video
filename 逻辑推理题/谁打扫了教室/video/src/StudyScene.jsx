@@ -5,11 +5,11 @@ import { Img, interpolate, staticFile } from 'remotion';
 const hosts = [
   {
     id: 'dad', head: [296, 72, 41, 46], shoulders: [294, 135, 67, 41],
-    eyes: [[285, 82], [304, 80.5]], blinks: [43, 109], phase: 0,
+    eyes: [[285, 82], [304, 80.5]], blinks: [43, 109], phase: 0, mouth: [297, 98.8, 8.3, 2.6, -5],
   },
   {
     id: 'son', head: [408, 138, 34, 38], shoulders: [411, 192, 46, 29],
-    eyes: [[399, 149], [417, 147.5]], blinks: [73, 131], phase: 1.7,
+    eyes: [[399, 149], [417, 147.5]], blinks: [73, 131], phase: 1.7, mouth: [409, 164.2, 6.2, 2.1, -4],
   },
 ];
 
@@ -20,7 +20,20 @@ function RegionMask({ id, area }) {
   </mask>;
 }
 
-function HostMotion({ host, frame }) {
+function Mouth({ anchor, opening }) {
+  const [x, y, width, depth, angle] = anchor;
+  const height = depth * opening;
+  return (
+    <g transform={`translate(${x} ${y}) rotate(${angle})`} opacity={Math.min(1, opening * 3)}>
+      <path d={`M ${-width} 0 Q 0 1.3 ${width} 0 Q 0 ${1.3 + height * 2.8} ${-width} 0 Z`}
+        fill="#683b2c" />
+      <path d={`M ${-width * 0.65} 0.65 Q 0 1.8 ${width * 0.65} 0.55 Q 0 ${1.8 + height * 0.65} ${-width * 0.65} 0.65 Z`}
+        fill="#f8dfbe" opacity={opening * 0.9} />
+    </g>
+  );
+}
+
+function HostMotion({ host, frame, opening }) {
   const { id, head, shoulders, eyes, blinks, phase } = host;
   const breath = Math.sin(frame / 24 + phase) * 0.85;
   const tilt = Math.sin(frame / 28 + phase) * 1.15;
@@ -33,6 +46,7 @@ function HostMotion({ host, frame }) {
     <g mask={`url(#${id}-head)`}>
       <g transform={`rotate(${tilt} ${headX} ${headY + 29})`}>
         <use href="#study-art" />
+        {opening > 0 && <Mouth anchor={host.mouth} opening={opening} />}
         {blink > 0 && eyes.map(([x, y], index) => (
           <g key={index} opacity={blink}>
             <g mask={`url(#${id}-eye-${index})`}>
@@ -46,7 +60,7 @@ function HostMotion({ host, frame }) {
   </>;
 }
 
-export function StudyScene({ frame }) {
+export function StudyScene({ frame, mouths }) {
   const art = staticFile('study.png');
   const zoom = interpolate(frame, [0, 59], [1, 1.026], { extrapolateRight: 'clamp' });
   return <>
@@ -68,7 +82,7 @@ export function StudyScene({ frame }) {
       </defs>
       <g transform={`translate(344 405) scale(${zoom}) translate(-344 -405)`}>
         <use href="#study-art" />
-        {hosts.map((host) => <HostMotion key={host.id} host={host} frame={frame} />)}
+        {hosts.map((host) => <HostMotion key={host.id} host={host} frame={frame} opening={mouths?.[host.id] ?? 0} />)}
       </g>
     </svg>
   </>;
