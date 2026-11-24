@@ -1,0 +1,211 @@
+[
+  {
+    "scene": "开场",
+    "frames": 624,
+    "anomalies": [
+      {
+        "frame": 0,
+        "time": 0.0,
+        "score": 8.893
+      },
+      {
+        "frame": 78,
+        "time": 2.6,
+        "score": 8.893
+      }
+    ]
+  },
+  {
+    "scene": "父子提问",
+    "frames": 269,
+    "anomalies": [
+      {
+        "frame": 688,
+        "time": 22.933,
+        "score": 13.15
+      },
+      {
+        "frame": 735,
+        "time": 24.5,
+        "score": 13.15
+      },
+      {
+        "frame": 785,
+        "time": 26.167,
+        "score": 13.15
+      }
+    ]
+  },
+  {
+    "scene": "分配假设",
+    "frames": 285,
+    "anomalies": []
+  },
+  {
+    "scene": "第一种假设",
+    "frames": 761,
+    "anomalies": [
+      {
+        "frame": 1690,
+        "time": 56.333,
+        "score": 25.685
+      },
+      {
+        "frame": 1698,
+        "time": 56.6,
+        "score": 25.671
+      },
+      {
+        "frame": 1880,
+        "time": 62.667,
+        "score": 25.678
+      },
+      {
+        "frame": 1886,
+        "time": 62.867,
+        "score": 25.678
+      }
+    ]
+  },
+  {
+    "scene": "第二种假设",
+    "frames": 483,
+    "anomalies": [
+      {
+        "frame": 1947,
+        "time": 64.9,
+        "score": 26.802
+      },
+      {
+        "frame": 1957,
+        "time": 65.233,
+        "score": 26.808
+      },
+      {
+        "frame": 1979,
+        "time": 65.967,
+        "score": 26.811
+      },
+      {
+        "frame": 2012,
+        "time": 67.067,
+        "score": 26.836
+      },
+      {
+        "frame": 2021,
+        "time": 67.367,
+        "score": 26.79
+      },
+      {
+        "frame": 2031,
+        "time": 67.7,
+        "score": 26.799
+      },
+      {
+        "frame": 2054,
+        "time": 68.467,
+        "score": 26.796
+      },
+      {
+        "frame": 2066,
+        "time": 68.867,
+        "score": 26.803
+      },
+      {
+        "frame": 2071,
+        "time": 69.033,
+        "score": 26.803
+      },
+      {
+        "frame": 2113,
+        "time": 70.433,
+        "score": 26.794
+      },
+      {
+        "frame": 2116,
+        "time": 70.533,
+        "score": 26.686
+      },
+      {
+        "frame": 2117,
+        "time": 70.567,
+        "score": 26.686
+      },
+      {
+        "frame": 2139,
+        "time": 71.3,
+        "score": 26.713
+      },
+      {
+        "frame": 2149,
+        "time": 71.633,
+        "score": 26.691
+      },
+      {
+        "frame": 2180,
+        "time": 72.667,
+        "score": 26.694
+      },
+      {
+        "frame": 2234,
+        "time": 74.467,
+        "score": 26.695
+      },
+      {
+        "frame": 2244,
+        "time": 74.8,
+        "score": 26.695
+      },
+      {
+        "frame": 2284,
+        "time": 76.133,
+        "score": 26.695
+      },
+      {
+        "frame": 2300,
+        "time": 76.667,
+        "score": 26.698
+      },
+      {
+        "frame": 2303,
+        "time": 76.767,
+        "score": 26.694
+      },
+      {
+        "frame": 2310,
+        "time": 77.0,
+        "score": 26.692
+      },
+      {
+        "frame": 2313,
+        "time": 77.1,
+        "score": 26.693
+      }
+    ]
+  },
+  {
+    "scene": "第三种假设",
+    "frames": 520,
+    "anomalies": []
+  },
+  {
+    "scene": "揭晓验算",
+    "frames": 584,
+    "anomalies": []
+  },
+  {
+    "scene": "儿子宣言",
+    "frames": 212,
+    "anomalies": []
+  },
+  {
+    "scene": "儿子快解",
+    "frames": 772,
+    "anomalies": []
+  },
+  {
+    "scene": "爸爸点赞",
+    "frames": 266,
+    "anomalies": []
+  }
+]

@@ -160,92 +160,61 @@ function Statement({ index, label, badge }) {
   </div>;
 }
 
-function FullLesson({ timeline: t, mouthTracks }) {
+function DeductionArt({ ending, opening }) {
+  const anchor = ending ? [399, 255, 10] : [638, 377, 10];
+  return <svg className="deduction-art" viewBox="0 0 1672 941">
+    <image href={staticFile(ending ? '11-dad-thumbs-up-ending.png' : '10-son-deduction-highlight.png')} width="1672" height="941" />
+    {opening > 0 && <ellipse cx={anchor[0]} cy={anchor[1]} rx={anchor[2]} ry={1 + opening * 4} fill="#683b2c" opacity={opening * 0.8} />}
+  </svg>;
+}
+
+function CaseTable({ speaker, frame, t }) {
+  const starts = speaker === 0 ? [t.first.start, t.huan.start, t.le.start] :
+    speaker === 1 ? [t.secondX.start, t.second.start, t.secondL.start] : [t.thirdX.start, t.third.start, t.third.start];
+  const results = [['小华没打扫', '欢欢打扫了', '欢欢没打扫'], ['小华打扫了', '欢欢没打扫', '欢欢没打扫'], ['小华打扫了', '欢欢打扫了', '欢欢打扫了']][speaker];
+  const candidates = [[[0,1,1],[0,1,0],[1,0,1]], [[1,0,0],[1,0,1],[1,0,1]], [[1,0,0],[0,1,0],[0,1,0]]][speaker];
+  const done = frame >= [t.judge.start,t.keep.start,t.thirdAsk.start][speaker];
+  return <div className="case-table">
+    <div className="case-header"><span>人物 · 原话</span><span>真假</span><span>推论</span><span>小华　欢欢　乐乐</span></div>
+    {children.map(({id,name},i)=><div key={id} className="case-line" style={{visibility: frame >= starts[i] ? 'visible' : 'hidden'}}>
+      <span className="case-person"><Icon name={id} size={48}/><strong>{name}</strong>「{quotes[i]}」</span>
+      <span className={speaker === i ? 'true-label':'false-label'}>{speaker === i ? '真':'假'}</span>
+      <strong>{results[i]}</strong><span>{candidates[i].map((v,j)=><span key={j} className={v?'true-label':'false-label'}>{v?'☑':'✖'}　</span>)}</span>
+    </div>)}
+    {done && <div className="case-summary">{speaker === 1 ? '共同候选人：小华 🧹　成立' : '共同候选人：无　矛盾，排除'}</div>}
+  </div>;
+}
+
+function FullLesson({ timeline: t, mouthTracks, frames }) {
   const frame = useCurrentFrame();
   if (!t.intro) return null;
-  const opening = t.rule.start - 8;
-  const swap = frame >= t.oneTruth.start + 36 && frame < t.shortcutAnswer.start;
-  const started = (key) => frame >= t[key].start;
-  const caption = Object.entries(t).find(([, line]) => line.start <= frame && frame < line.end);
-  if (frame >= opening && !started('second')) {
-    const local = Object.fromEntries(Object.entries(t).map(([key, line]) => [
-      key, { ...line, start: line.start - opening, end: line.end - opening },
-    ]));
-    return <Sequence from={opening} layout="none">
-      <VoicePreview timeline={local} mouthTracks={mouthTracks} />
-    </Sequence>;
-  }
-
-  return <AbsoluteFill style={{ backgroundColor: '#FCF4E7' }}>
-    <div className="canvas">
-      {frame < opening ? (
-        <div className="lesson-split">
-          <Img src={staticFile('classroom.png')} className="classroom-art"
-            style={{ transform: `scale(${1 + frame / opening * 0.035})` }} />
-          <div className="lesson-panel">
-            <h1>谁打扫了教室？</h1>
-            <p>只有一人打扫，只有一句真话</p>
-            {['quoteX', 'quoteH', 'quoteL'].map((key, index) =>
-              started(key) && <Statement key={key} index={index} />)}
-          </div>
-        </div>
-      ) : started('shortcut') ? (
-        <div className="lesson-split">
-          <StudyScene frame={frame - t.shortcut.start} mouths={{
-            dad: mouthTracks.praise?.[frame - t.praise.start],
-            son: caption && caption[0] !== 'praise' ? mouthTracks[caption[0]]?.[frame - caption[1].start] : 0,
-          }} />
-          <div className="lesson-panel">
-            <h1>儿子发现了快解</h1>
-            {started('opposites') && <>
-              <Statement index={1} badge={started('oneTruth') ? (swap ? 'devil' : 'angel') : null} />
-              <Statement index={2} badge={started('oneTruth') ? (swap ? 'angel' : 'devil') : null} />
-            </>}
-            {started('oneTruth') && <div className="fast-truth">
-              <Icon name="angel" size={45} /><span>一真一假</span><Icon name="devil" size={45} />
-            </div>}
-            {started('shortcutWhy') && <Statement index={0} badge="devil" />}
-            {started('shortcutAnswer') && <p className="answer-note">小华打扫了教室</p>}
-          </div>
-        </div>
-      ) : (
-        <>
-          <div className="eyebrow">逻辑推理题 · 谁打扫了教室</div>
-          <div className="title">{started('answer') ? '答案：小华打扫了教室' :
-            started('third') ? '检验第三种假设' : '检验第二种假设'}</div>
-          <div className="assumptions">
-            <AssumptionRow speaker={started('third') && !started('answer') ? 2 : 1} frame={frame} start={0} />
-            {started('answer') ? (
-              <div className="answer-statements">
-                {['checkX', 'checkH', 'checkL'].map((key, index) => (
-                  <Statement key={key} index={index} label={started(key) ? (index === 1 ? '真话' : '假话') : null} />
-                ))}
-              </div>
-            ) : started('third') ? (
-              <>
-                <div className="inferences">
-                  <Inference name="乐乐" quote={quotes[2]} result="欢欢打扫了" visible resolved={started('thirdX')} truthful />
-                  <Inference name="小华" quote={quotes[0]} result="小华也打扫了" visible={started('thirdX')} resolved={started('thirdAsk')} />
-                </div>
-                {started('thirdAsk') && <div className="verdict">{started('thirdReject') ?
-                  '矛盾 · 只能有一人打扫' : '可以有两个人打扫吗？'}</div>}
-              </>
-            ) : (
-              <>
-                <div className="inferences">
-                  <Inference name="欢欢" quote={quotes[1]} result="欢欢没打扫" visible resolved={started('secondX')} truthful />
-                  <Inference name="小华" quote={quotes[0]} result="小华打扫了" visible={started('secondX')} resolved={started('secondL')} />
-                </div>
-                {started('secondL') && <div className="verdict true-label">{started('keep') ?
-                  '成立 · 保留第二种' : '乐乐说假话，也推出欢欢没打扫'}</div>}
-              </>
-            )}
-          </div>
-        </>
-      )}
-      {caption && <div className="voice-caption">{caption[1].text}</div>}
-    </div>
-  </AbsoluteFill>;
+  const started = key => frame >= t[key].start;
+  const caption = Object.entries(t).find(([,line])=>line.start<=frame && frame<line.end);
+  const ending = started('praise');
+  const activeOpening = caption ? mouthTracks[caption[0]]?.[frame-caption[1].start] ?? 0 : 0;
+  const speaker = started('third') ? 2 : started('second') ? 1 : 0;
+  const swap = started('oneTruth') && frame < t.shortcutAnswer.start && Math.floor((frame-t.oneTruth.start)/45)%2 === 1;
+  return <AbsoluteFill style={{backgroundColor:'#FCF4E7',opacity:fade(frame,frames-15,frames-1,1,0)}}><div className="canvas">
+    {!started('rule') ? <div className="lesson-split">
+      <Img src={staticFile('classroom.png')} className="classroom-art"/>
+      <div className="lesson-panel opening-panel"><div className="mom-avatar"><svg width="100" height="100" viewBox="80 0 500 570"><image href={staticFile('mom.png')} width="1726" height="911"/></svg></div><div className="mom-name">兔子妈妈</div>
+      <h1>谁打扫了教室？</h1><p>今天出一道推理题</p><p>只有一人打扫，只有一句真话</p>
+      {['quoteX','quoteH','quoteL'].map((key,i)=>started(key)&&<Statement key={key} index={i}/>)}</div>
+    </div> : !started('assign') ? <Question frame={frame-t.rule.start} promptFrame={t.question.start-t.rule.start} exitFrame={99999} mouths={{dad:mouthTracks.dad?.[frame-t.rule.start],son:mouthTracks.son?.[frame-t.question.start]}}/>
+    : !started('first') ? <><div className="eyebrow">逻辑推理题 · 谁打扫了教室</div><div className="title">排出三种假设</div><div className="assumptions">{children.map(({id},i)=><AssumptionRow key={id} speaker={i} frame={frame} start={t.assign.start+i*Math.floor((t.first.start-t.assign.start)/3)}/>)}</div></>
+    : started('shortcut') ? <>
+      <DeductionArt ending={ending} opening={activeOpening}/>
+      <div className="board-panel"><h1>{ending?'长江后浪推前浪！':!started('opposites')?'真相只有一个！':'先找相反的两句话'}</h1>
+      {!ending && !started('opposites') && <p>解法不止一种！</p>}
+      {!ending && started('opposites') && <><Statement index={1} badge={started('oneTruth')?(swap?'devil':'angel'):null}/><Statement index={2} badge={started('oneTruth')?(swap?'angel':'devil'):null}/>
+      {started('oneTruth')&&<p>一真一假 → 唯一真话在这里</p>}
+      {started('shortcutFalse')&&<Statement index={0} badge="devil"/>}
+      {started('shortcutAnswer')&&<p>小华打扫了教室 🧹</p>}</>}
+      {ending && <p>会检验，也会发现更快的解法。</p>}</div>
+    </> : started('answer') ? <><div className="eyebrow">逻辑推理题 · 揭晓与验算</div><div className="title">答案：小华打扫了教室 🧹</div><div className="reveal-panel">{['checkX','checkH','checkL'].map((key,i)=><Statement key={key} index={i} label={started(key)?(i===1?'真话':'假话'):null}/>)}{started('checkDone')&&<p>只有一人打扫，只有一句真话 ✓</p>}</div></>
+    : <><div className="eyebrow">逻辑推理题 · 谁打扫了教室</div><div className="title">检验第{['一','二','三'][speaker]}种假设：{children[speaker].name}说真话</div><CaseTable speaker={speaker} frame={frame} t={t}/></>}
+    {caption&&<div className="voice-caption">{caption[1].text}</div>}
+  </div></AbsoluteFill>;
 }
 
 registerRoot(() => (

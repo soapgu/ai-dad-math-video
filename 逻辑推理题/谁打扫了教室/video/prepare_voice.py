@@ -1,5 +1,6 @@
 """按实测语音长度生成试片时间轴、外挂字幕和混音。"""
 import asyncio
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -19,7 +20,7 @@ LINES = [
     ('question', 'Yunxia', '那小天使该给谁呢？', 90),
     ('assign', 'Yunjian', '轮流给三个人试试。每次一人说真话，另外两人说假话。', 6),
     ('method', 'Yunjian', '真话照着听，假话反过来想。', 8),
-    ('first', 'Yunjian', '先假设小华说真话。', 5),
+    ('first', 'Yunjian', '先假设小华说真话，所以小华没打扫。', 5),
     ('huan', 'Yunjian', '欢欢说，也不是我做的。这句是假的，所以欢欢打扫了。', 6),
     ('le', 'Yunjian', '乐乐说，是欢欢做的。这句也是假的，所以欢欢没打扫。', 6),
     ('judge', 'Yunjian', '两条能同时成立吗？', 60),
@@ -29,7 +30,7 @@ LINES = [
 
 
 INTRO = [
-    ('intro', 'Xiaoxiao', '放学后，三个人里只有一人打扫了教室。', 5),
+    ('intro', 'Xiaoxiao', '今天出一道推理题。放学后，小华、欢欢和乐乐三个人里，只有一人打扫了教室。', 5),
     ('quoteX', 'Xiaoxiao', '小华说，不是我做的。', 3),
     ('quoteH', 'Xiaoxiao', '欢欢说，也不是我做的。', 3),
     ('quoteL', 'Xiaoxiao', '乐乐说，是欢欢做的。', 3),
@@ -49,12 +50,15 @@ ENDING = [
     ('checkH', 'Yunjian', '欢欢说自己没打扫，是真话。', 4),
     ('checkL', 'Yunjian', '乐乐说是欢欢做的，是假话。', 4),
     ('checkDone', 'Yunjian', '只有一人打扫，也只有一句真话。', 20),
-    ('shortcut', 'Yunxia', '爸，我发现还能更快！', 4),
-    ('opposites', 'Yunxia', '欢欢说自己没打扫，乐乐说欢欢打扫了。', 4),
-    ('oneTruth', 'Yunxia', '这两句正好相反，一定一真一假。', 4),
-    ('shortcutWhy', 'Yunxia', '唯一的真话已经在这里了，所以小华说不是我做的一定是假话。', 4),
-    ('shortcutAnswer', 'Yunxia', '就是小华打扫的！', 8),
-    ('praise', 'Yunjian', '漂亮！你找到两句正好相反的话，一下就推出来了！', 45),
+    ('shortcut', 'Yunxia', '我发现还能更快。', 4),
+    ('declaration', 'Yunxia', '真相只有一个！但是解法不止一种！', 15),
+    ('opposites', 'Yunxia', '先看欢欢和乐乐。欢欢说自己没打扫，乐乐说是欢欢打扫的。', 4),
+    ('oneTruth', 'Yunxia', '这两句说的是同一件事，意思正好相反，一定一真一假。', 4),
+    ('shortcutWhy', 'Yunxia', '题目说只有一句真话，这句真话已经在他们俩中间了。', 4),
+    ('shortcutFalse', 'Yunxia', '所以，小华说不是我做的一定是假话。', 4),
+    ('shortcutAnswer', 'Yunxia', '反过来，就是小华打扫的！', 8),
+    ('praise', 'Yunjian', '漂亮！你找到两句正好相反的话，一下就推出来了！', 4),
+    ('praiseEnd', 'Yunjian', '果然长江后浪推前浪！', 30),
 ]
 
 
@@ -82,12 +86,9 @@ async def main():
     OUT.mkdir(exist_ok=True)
     full = "--full" in sys.argv
     lines = INTRO + LINES + ENDING if full else LINES
-    stem = "谁打扫了教室_成片" if full else STEM
+    stem = "谁打扫了教室_成片_v2" if full else STEM
     tag = "full" if full else "voice"
     props_file = ASSETS / f'{tag}-props.json'
-    reuse = '--reuse' in sys.argv
-    previous = json.loads(props_file.read_text(encoding='utf-8'))['timeline'] if reuse else {}
-    trial_keys = {entry[0] for entry in LINES}
     timeline = {}
     cues = []
     audio_inputs = []
@@ -96,12 +97,13 @@ async def main():
     for index, (key, voice, line, pause) in enumerate(lines):
         target = ASSETS / f'voice-{key}.mp3'
         temp = target.with_suffix('.tmp')
-        cached = target.is_file() and (
-            (full and key in trial_keys) or previous.get(key, {}).get('text') == line
-        )
+        signature = hashlib.sha256(f'{line}|{voice}|+8%|v2'.encode()).hexdigest()
+        metadata = target.with_suffix('.json')
+        cached = target.is_file() and metadata.is_file() and metadata.read_text() == signature
         if not cached:
             await edge_tts.Communicate(line, f'zh-CN-{voice}Neural', rate='+8%').save(temp)
             temp.replace(target)
+            metadata.write_text(signature)
         duration = audio_duration(target)
         end = cursor + math.ceil(duration * FPS)
         timeline[key] = {'start': cursor, 'end': end, 'text': line}
@@ -120,29 +122,30 @@ async def main():
     if full:
         sections = [
             (next(bgm.glob('推理*.m4a')), 0, timeline['rule']['start']),
-            (main_music, timeline['rule']['start'], timeline['shortcut']['start']),
+            (main_music, timeline['rule']['start'], timeline['answer']['start'] + FPS),
+            (bgm / '沈む夕陽 (沉落夕阳).m4a', timeline['answer']['start'], timeline['shortcut']['start'] + FPS),
             (bgm / '対決のテーマ.m4a', timeline['shortcut']['start'], cursor),
         ]
     music_tracks = []
     for index, (source, start, end) in enumerate(sections):
         span = (end - start) / FPS
-        audio_inputs.extend(['-i', str(source)])
-        stream = f'[{len(lines) + index}:a]'
         if span > audio_duration(source):
-            # 为当前主段补一次曲首，在原曲末尾交叠一秒。
             if span > 2 * audio_duration(source) - 1:
                 raise ValueError(f'音源过短：{source.name}')
-            filters.extend([
-                f'{stream}asplit=2[tail{index}][head{index}]',
-                f'[tail{index}][head{index}]acrossfade=d=1[extended{index}]',
-            ])
-            stream = f'[extended{index}]'
+            extended = ASSETS / f'music-extended-{index}.m4a'
+            # 两路独立输入保证第二次播放完整可用，避免同源 asplit 被提前截断。
+            run('ffmpeg', '-v', 'error', '-y', '-i', str(source), '-i', str(source),
+                '-filter_complex', '[0:a][1:a]acrossfade=d=1',
+                '-c:a', 'aac', '-b:a', '192k', str(extended))
+            source = extended
+        audio_inputs.extend(['-i', str(source)])
+        stream = f'[{len(lines) + index}:a]'
         label = f'music{index}'
         music_tracks.append(f'[{label}]')
         filters.append(
             f'{stream}aresample=48000,aformat=channel_layouts=stereo,'
-            f'atrim=duration={span},asetpts=PTS-STARTPTS,volume=-22dB,afade=d=0.6,'
-            f'afade=t=out:st={span - 0.8}:d=0.8,adelay={start * 1600}S:all=1[{label}]'
+            f'atrim=duration={span},asetpts=PTS-STARTPTS,volume=-22dB,afade=d={1 if full and index >= 2 else 0.6},'
+            f'afade=t=out:st={span - (1 if full and index in (1, 2) else 0.8)}:d={1 if full and index in (1, 2) else 0.8},adelay={start * 1600}S:all=1[{label}]'
         )
     tracks = ''.join(f'[voice{i}]' for i in range(len(lines))) + ''.join(music_tracks)
     filters.append(f'{tracks}amix=inputs={len(lines)+len(sections)}:normalize=0,alimiter=limit=0.95:level=0:latency=1')

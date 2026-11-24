@@ -1,0 +1,52 @@
+[
+  {
+    "scene": "开场",
+    "frames": 624,
+    "anomalies": []
+  },
+  {
+    "scene": "父子提问",
+    "frames": 269,
+    "anomalies": []
+  },
+  {
+    "scene": "分配假设",
+    "frames": 285,
+    "anomalies": []
+  },
+  {
+    "scene": "第一种假设",
+    "frames": 761,
+    "anomalies": []
+  },
+  {
+    "scene": "第二种假设",
+    "frames": 483,
+    "anomalies": []
+  },
+  {
+    "scene": "第三种假设",
+    "frames": 520,
+    "anomalies": []
+  },
+  {
+    "scene": "揭晓验算",
+    "frames": 584,
+    "anomalies": []
+  },
+  {
+    "scene": "儿子宣言",
+    "frames": 212,
+    "anomalies": []
+  },
+  {
+    "scene": "儿子快解",
+    "frames": 772,
+    "anomalies": []
+  },
+  {
+    "scene": "爸爸点赞",
+    "frames": 266,
+    "anomalies": []
+  }
+]
